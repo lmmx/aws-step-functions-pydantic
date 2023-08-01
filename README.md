@@ -12,12 +12,35 @@ Pydantic models for AWS step functions
 
 ## Usage
 
+### From Step Function ARN
+
+Use the `from_arn()` class constructor
+
 ```py
 from aws_sfn_pydantic import StateMachine
-import yaml
 
-model = StateMachine.model_validate_json('...')
-print(yaml.dump(m.model_dump(exclude_unset=True), sort_keys=False))
+sfn = StateMachine.from_arn(state_machine_arn="...")
+```
+
+### From JSON
+
+Use the `model_validate_json()` class constructor (Pydantic v2 builtin)
+
+```py
+from aws_sfn_pydantic import StateMachine
+
+sfn = StateMachine.model_validate_json("...")
+```
+
+### To YAML
+
+Use the `to_yaml()` class constructor, which accepts:
+
+- `indent` (default: 2)
+- `level` (default: 0)
+
+```py
+print(sfn.model_to_yaml())
 ```
 
 ## Requires
