@@ -10,6 +10,16 @@ Pydantic models for AWS step functions
 
 [Read The Docs](https://aws-step-functions-pydantic.readthedocs.io/en/latest/)
 
+## Usage
+
+```py
+from aws_sfn_pydantic import StateMachine
+import yaml
+
+model = StateMachine.model_validate_json('...')
+print(yaml.dump(m.model_dump(exclude_unset=True), sort_keys=False))
+```
+
 ## Requires
 
 - Python 3.10+

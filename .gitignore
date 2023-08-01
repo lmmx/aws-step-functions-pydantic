@@ -1,3 +1,6 @@
+*.log
+codegen/asl-validator
+
 *.swp
 *.swo
 .tox

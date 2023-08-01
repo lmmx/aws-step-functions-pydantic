@@ -5,7 +5,8 @@ from setuptools import find_packages, setup
 
 ########################################################################################
 
-NAME = "aws_step_functions_pydantic"
+NAME = "aws-step-functions-pydantic"
+INTERNAL_NAME = "aws_sfn_pydantic"
 PROJECT_URLS = {
     "Documentation": "https://aws-step-functions-pydantic.readthedocs.io/",
     "Bug Tracker": "https://github.com/lmmx/aws-step-functions-pydantic/issues",
@@ -37,7 +38,7 @@ EXTRAS_REQUIRE["dev"] = (
 )
 PYTHON_REQUIRES = ">=3.10"
 LONG_DESCRIPTION = Path("README.md").read_text()
-PACKAGE_DATA = {"aws_step_functions_pydantic": ["py.typed"]}
+PACKAGE_DATA = {}
 
 ########################################################################################
 
@@ -53,7 +54,7 @@ def version_scheme(version):
 ########################################################################################
 
 
-META_PATH = Path(__file__).parent.absolute() / "src" / NAME / "__init__.py"
+META_PATH = Path(__file__).parent.absolute() / "src" / INTERNAL_NAME / "__init__.py"
 META_FILE = META_PATH.read_text()
 
 

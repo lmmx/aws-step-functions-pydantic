@@ -2,7 +2,7 @@
 API Reference
 =============
 
-.. automodule:: aws_step_functions_pydantic
+.. automodule:: sfn_val
    :members:
    :undoc-members:
    :show-inheritance:

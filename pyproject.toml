@@ -8,7 +8,7 @@ profile = "black"
 [tool.coverage.run]
 parallel = true
 branch = true
-source = ["aws_step_functions_pydantic"]
+source = ["sfn_val"]
 
 [tool.coverage.paths]
 source = ["src", ".tox/*/site-packages"]
