@@ -1,5 +1,5 @@
 r"""
-:mod:`aws_step_functions_pydantic` is...
+:mod:`aws_step_functions_pydantic` provides Pydantic models for AWS step functions.
 
     >>> import aws_step_functions_pydantic
 """
