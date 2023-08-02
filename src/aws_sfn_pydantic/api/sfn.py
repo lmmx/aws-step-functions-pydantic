@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from textwrap import indent
+import textwrap
 
 import yaml
 
@@ -26,4 +26,4 @@ class StateMachine(BaseStateMachine):
         sfn = self.model_dump(exclude_unset=True)
         prefix = " " * indent * level
         yml = yaml.dump(sfn, indent=indent, sort_keys=False)
-        return indent(yml, prefix=prefix)
+        return textwrap.indent(yml, prefix=prefix)
