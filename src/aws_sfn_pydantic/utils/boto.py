@@ -1,5 +1,5 @@
 try:
-    import boto3
+    import boto3  # noqa: F401
 except ImportError:
     HAS_BOTO = False
 else:
