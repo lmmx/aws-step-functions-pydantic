@@ -1,8 +1,8 @@
 # from pytest import mark, fixture
 
-import sfn_val
+import aws_sfn_pydantic
 
 
 def test_example():
-    print(sfn_val)
+    print(aws_sfn_pydantic)
     assert True

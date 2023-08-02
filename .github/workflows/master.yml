@@ -60,7 +60,7 @@ jobs:
         if: "contains(env.USING_COVERAGE, matrix.python-version)"
         uses: "codecov/codecov-action@v1"
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
 
   package:
     name: "Build & verify package"
@@ -124,4 +124,4 @@ jobs:
           echo "conda=$(which conda)"
           python -m pip install -e .[dev]
       - name: "Import package"
-        run: "python -c 'import aws_step_functions_pydantic; print(aws_step_functions_pydantic)'"
+        run: "python -c 'import aws_sfn_pydantic; print(aws_sfn_pydantic)'"
