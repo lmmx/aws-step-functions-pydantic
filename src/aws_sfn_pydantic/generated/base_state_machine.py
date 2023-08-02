@@ -66,9 +66,9 @@ class Operator(BaseModel):
 
 class Fail(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Fail']
+    Type: Literal["Fail"]
     Comment: Optional[str] = None
     Cause: Optional[str] = None
     Error: Optional[str] = None
@@ -77,24 +77,24 @@ class Fail(BaseModel):
 class Errors(RootModel):
     root: Union[
         str,
-        Literal['States.ALL'],
-        Literal['States.HeartbeatTimeout'],
-        Literal['States.Timeout'],
-        Literal['States.TaskFailed'],
-        Literal['States.Permissions'],
-        Literal['States.ResultPathMatchFailure'],
-        Literal['States.ParameterPathFailure'],
-        Literal['States.BranchFailed'],
-        Literal['States.NoChoiceMatched'],
-        Literal['States.IntrinsicFailure'],
-    ] = Field(..., description='https://states-language.net/#appendix-a')
+        Literal["States.ALL"],
+        Literal["States.HeartbeatTimeout"],
+        Literal["States.Timeout"],
+        Literal["States.TaskFailed"],
+        Literal["States.Permissions"],
+        Literal["States.ResultPathMatchFailure"],
+        Literal["States.ParameterPathFailure"],
+        Literal["States.BranchFailed"],
+        Literal["States.NoChoiceMatched"],
+        Literal["States.IntrinsicFailure"],
+    ] = Field(..., description="https://states-language.net/#appendix-a")
 
 
 class Succeed(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Succeed']
+    Type: Literal["Succeed"]
     Comment: Optional[str] = None
     OutputPath: Optional[AslPath] = None
     InputPath: Optional[AslPath] = None
@@ -119,9 +119,9 @@ class CatchItem1(BaseModel):
 
 class Wait(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Wait']
+    Type: Literal["Wait"]
     Next: Optional[str] = None
     End: Optional[Literal[True]] = None
     Comment: Optional[str] = None
@@ -135,23 +135,23 @@ class Wait(BaseModel):
 
 class ReaderConfig(BaseModel):
     model_config = ConfigDict(
-        extra='allow',
+        extra="allow",
     )
     MaxItems: Optional[conint(ge=1)] = None
     MaxItemsPath: Optional[AslRefPath] = None
 
 
 class ProcessorConfigItem(BaseModel):
-    Mode: Literal['INLINE']
+    Mode: Literal["INLINE"]
 
 
 class ExecutionType(Enum):
-    EXPRESS = 'EXPRESS'
-    STANDARD = 'STANDARD'
+    EXPRESS = "EXPRESS"
+    STANDARD = "STANDARD"
 
 
 class ProcessorConfigItem1(BaseModel):
-    Mode: Literal['DISTRIBUTED']
+    Mode: Literal["DISTRIBUTED"]
     ExecutionType: ExecutionType
 
 
@@ -166,9 +166,9 @@ class Choice1(Operator):
 
 class Choice(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Choice']
+    Type: Literal["Choice"]
     Next: Optional[str] = None
     End: Optional[Literal[True]] = None
     Comment: Optional[str] = None
@@ -187,7 +187,7 @@ class CatchItem(BaseModel):
 class Model(BaseModel):
     Comment: Optional[str] = None
     StartAt: str
-    States: Dict[constr(pattern=r'^.{1,80}$'), State]
+    States: Dict[constr(pattern=r"^.{1,80}$"), State]
 
 
 class State(RootModel):
@@ -196,9 +196,9 @@ class State(RootModel):
 
 class FieldPayloadTemplateObject(RootModel):
     root: Union[
-        Dict[constr(pattern=r'^.+\.\$$'), str],
+        Dict[constr(pattern=r"^.+\.\$$"), str],
         Dict[
-            constr(pattern=r'^.+(([^.][^$])|([^.][$]))$'),
+            constr(pattern=r"^.+(([^.][^$])|([^.][$]))$"),
             Union[
                 Optional[Union[float, bool, str]],
                 List[AslPayloadTemplate],
@@ -216,9 +216,9 @@ class AslPayloadTemplate(RootModel):
 
 class Parallel(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Parallel']
+    Type: Literal["Parallel"]
     Parameters: Optional[AslPayloadTemplate] = None
     ResultSelector: Optional[AslPayloadTemplate] = None
     Next: Optional[str] = None
@@ -234,20 +234,20 @@ class Parallel(BaseModel):
 
 class StateMachine(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     Comment: Optional[str] = None
     StartAt: str
-    States: Dict[constr(pattern=r'^.{1,80}$'), State]
+    States: Dict[constr(pattern=r"^.{1,80}$"), State]
     Version: Optional[str] = None
     TimeoutSeconds: Optional[conint(ge=0)] = None
 
 
 class Pass(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Pass']
+    Type: Literal["Pass"]
     Next: Optional[str] = None
     End: Optional[Literal[True]] = None
     Comment: Optional[str] = None
@@ -260,15 +260,15 @@ class Pass(BaseModel):
 
 class Task(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Task']
+    Type: Literal["Task"]
     Next: Optional[str] = None
     End: Optional[Literal[True]] = None
     Comment: Optional[str] = None
     OutputPath: Optional[AslPath] = None
     InputPath: Optional[AslPath] = None
-    Resource: Union[str, constr(pattern=r'^\$\{[^\}]+\}$'), ResourceItem]
+    Resource: Union[str, constr(pattern=r"^\$\{[^\}]+\}$"), ResourceItem]
     ResultPath: Optional[AslRefPath] = None
     Retry: Optional[List[RetryItem]] = None
     Catch: Optional[List[CatchItem1]] = None
@@ -297,9 +297,9 @@ class ItemBatcher(BaseModel):
 
 class Map(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    Type: Literal['Map']
+    Type: Literal["Map"]
     Next: Optional[str] = None
     End: Optional[Literal[True]] = None
     Comment: Optional[str] = None
