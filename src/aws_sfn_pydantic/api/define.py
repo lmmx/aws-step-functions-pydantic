@@ -13,5 +13,5 @@ def get_sfn_defn(state_machine_arn: str) -> str:
 
     sfn = boto3.client("stepfunctions")
     response = sfn.describe_state_machine(stateMachineArn=state_machine_arn)
-    defn =  response["definition"]
+    defn = response["definition"]
     return defn
