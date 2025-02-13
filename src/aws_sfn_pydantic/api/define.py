@@ -7,7 +7,7 @@ def get_sfn_defn(state_machine_arn: str) -> str:
     if not HAS_BOTO:
         raise ImportError(
             "The boto3 package is required to use this function. "
-            "Please install it with `pip install aws-step-functions-pydantic[boto3]`."
+            "Please install it with `pip install aws-step-functions-pydantic[boto3]`.",
         )
     import boto3
 
