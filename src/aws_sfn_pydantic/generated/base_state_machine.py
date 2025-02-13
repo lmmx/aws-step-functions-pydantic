@@ -5,63 +5,63 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint, constr
 
 
 class AslPath(RootModel):
-    root: Optional[str]
+    root: str | None
 
 
 class AslRefPath(RootModel):
-    root: Optional[str]
+    root: str | None
 
 
 class Operator(BaseModel):
-    Variable: Optional[str] = None
-    And: Optional[List[Operator]] = None
-    Or: Optional[List[Operator]] = None
-    Not: Optional[Operator] = None
-    IsNull: Optional[bool] = None
-    IsPresent: Optional[bool] = None
-    BooleanEquals: Optional[bool] = None
-    BooleanEqualsPath: Optional[AslPath] = None
-    IsBoolean: Optional[bool] = None
-    NumericEquals: Optional[float] = None
-    NumericEqualsPath: Optional[AslPath] = None
-    NumericGreaterThan: Optional[float] = None
-    NumericGreaterThanPath: Optional[AslPath] = None
-    NumericGreaterThanEquals: Optional[float] = None
-    NumericGreaterThanEqualsPath: Optional[AslPath] = None
-    NumericLessThan: Optional[float] = None
-    NumericLessThanPath: Optional[AslPath] = None
-    NumericLessThanEquals: Optional[float] = None
-    NumericLessThanEqualsPath: Optional[AslPath] = None
-    IsNumeric: Optional[bool] = None
-    StringEquals: Optional[str] = None
-    StringEqualsPath: Optional[AslPath] = None
-    StringGreaterThan: Optional[str] = None
-    StringGreaterThanPath: Optional[AslPath] = None
-    StringGreaterThanEquals: Optional[str] = None
-    StringGreaterThanEqualsPath: Optional[AslPath] = None
-    StringLessThan: Optional[str] = None
-    StringLessThanPath: Optional[AslPath] = None
-    StringLessThanEquals: Optional[str] = None
-    StringLessThanEqualsPath: Optional[AslPath] = None
-    StringMatches: Optional[str] = None
-    IsString: Optional[bool] = None
-    TimestampEquals: Optional[str] = None
-    TimestampEqualsPath: Optional[AslPath] = None
-    TimestampGreaterThan: Optional[str] = None
-    TimestampGreaterThanPath: Optional[AslPath] = None
-    TimestampGreaterThanEquals: Optional[str] = None
-    TimestampGreaterThanEqualsPath: Optional[AslPath] = None
-    TimestampLessThan: Optional[str] = None
-    TimestampLessThanPath: Optional[AslPath] = None
-    TimestampLessThanEquals: Optional[str] = None
-    TimestampLessThanEqualsPath: Optional[AslPath] = None
-    IsTimestamp: Optional[bool] = None
+    Variable: str | None = None
+    And: list[Operator] | None = None
+    Or: list[Operator] | None = None
+    Not: Operator | None = None
+    IsNull: bool | None = None
+    IsPresent: bool | None = None
+    BooleanEquals: bool | None = None
+    BooleanEqualsPath: AslPath | None = None
+    IsBoolean: bool | None = None
+    NumericEquals: float | None = None
+    NumericEqualsPath: AslPath | None = None
+    NumericGreaterThan: float | None = None
+    NumericGreaterThanPath: AslPath | None = None
+    NumericGreaterThanEquals: float | None = None
+    NumericGreaterThanEqualsPath: AslPath | None = None
+    NumericLessThan: float | None = None
+    NumericLessThanPath: AslPath | None = None
+    NumericLessThanEquals: float | None = None
+    NumericLessThanEqualsPath: AslPath | None = None
+    IsNumeric: bool | None = None
+    StringEquals: str | None = None
+    StringEqualsPath: AslPath | None = None
+    StringGreaterThan: str | None = None
+    StringGreaterThanPath: AslPath | None = None
+    StringGreaterThanEquals: str | None = None
+    StringGreaterThanEqualsPath: AslPath | None = None
+    StringLessThan: str | None = None
+    StringLessThanPath: AslPath | None = None
+    StringLessThanEquals: str | None = None
+    StringLessThanEqualsPath: AslPath | None = None
+    StringMatches: str | None = None
+    IsString: bool | None = None
+    TimestampEquals: str | None = None
+    TimestampEqualsPath: AslPath | None = None
+    TimestampGreaterThan: str | None = None
+    TimestampGreaterThanPath: AslPath | None = None
+    TimestampGreaterThanEquals: str | None = None
+    TimestampGreaterThanEqualsPath: AslPath | None = None
+    TimestampLessThan: str | None = None
+    TimestampLessThanPath: AslPath | None = None
+    TimestampLessThanEquals: str | None = None
+    TimestampLessThanEqualsPath: AslPath | None = None
+    IsTimestamp: bool | None = None
 
 
 class Fail(BaseModel):
@@ -69,25 +69,25 @@ class Fail(BaseModel):
         extra="forbid",
     )
     Type: Literal["Fail"]
-    Comment: Optional[str] = None
-    Cause: Optional[str] = None
-    Error: Optional[str] = None
+    Comment: str | None = None
+    Cause: str | None = None
+    Error: str | None = None
 
 
 class Errors(RootModel):
-    root: Union[
-        str,
-        Literal["States.ALL"],
-        Literal["States.HeartbeatTimeout"],
-        Literal["States.Timeout"],
-        Literal["States.TaskFailed"],
-        Literal["States.Permissions"],
-        Literal["States.ResultPathMatchFailure"],
-        Literal["States.ParameterPathFailure"],
-        Literal["States.BranchFailed"],
-        Literal["States.NoChoiceMatched"],
-        Literal["States.IntrinsicFailure"],
-    ] = Field(..., description="https://states-language.net/#appendix-a")
+    root: (
+        str
+        | Literal["States.ALL"]
+        | Literal["States.HeartbeatTimeout"]
+        | Literal["States.Timeout"]
+        | Literal["States.TaskFailed"]
+        | Literal["States.Permissions"]
+        | Literal["States.ResultPathMatchFailure"]
+        | Literal["States.ParameterPathFailure"]
+        | Literal["States.BranchFailed"]
+        | Literal["States.NoChoiceMatched"]
+        | Literal["States.IntrinsicFailure"]
+    ) = Field(..., description="https://states-language.net/#appendix-a")
 
 
 class Succeed(BaseModel):
@@ -95,26 +95,26 @@ class Succeed(BaseModel):
         extra="forbid",
     )
     Type: Literal["Succeed"]
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
 
 
 class ResourceItem(BaseModel):
-    Ref: Optional[str] = None
+    Ref: str | None = None
 
 
 class RetryItem(BaseModel):
-    ErrorEquals: List[Errors]
-    IntervalSeconds: Optional[confloat(ge=0.0)] = None
-    MaxAttempts: Optional[confloat(ge=0.0)] = None
-    BackoffRate: Optional[confloat(ge=0.0)] = None
+    ErrorEquals: list[Errors]
+    IntervalSeconds: confloat(ge=0.0) | None = None
+    MaxAttempts: confloat(ge=0.0) | None = None
+    BackoffRate: confloat(ge=0.0) | None = None
 
 
 class CatchItem1(BaseModel):
-    ErrorEquals: List[Errors]
+    ErrorEquals: list[Errors]
     Next: str
-    ResultPath: Optional[AslRefPath] = None
+    ResultPath: AslRefPath | None = None
 
 
 class Wait(BaseModel):
@@ -122,23 +122,23 @@ class Wait(BaseModel):
         extra="forbid",
     )
     Type: Literal["Wait"]
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    Seconds: Optional[confloat(ge=0.0)] = None
-    Timestamp: Optional[str] = None
-    SecondsPath: Optional[AslRefPath] = None
-    TimestampPath: Optional[AslRefPath] = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    Seconds: confloat(ge=0.0) | None = None
+    Timestamp: str | None = None
+    SecondsPath: AslRefPath | None = None
+    TimestampPath: AslRefPath | None = None
 
 
 class ReaderConfig(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    MaxItems: Optional[conint(ge=1)] = None
-    MaxItemsPath: Optional[AslRefPath] = None
+    MaxItems: conint(ge=1) | None = None
+    MaxItemsPath: AslRefPath | None = None
 
 
 class ProcessorConfigItem(BaseModel):
@@ -156,7 +156,7 @@ class ProcessorConfigItem1(BaseModel):
 
 
 class CatchItem2(BaseModel):
-    ErrorEquals: List[Errors]
+    ErrorEquals: list[Errors]
     Next: str
 
 
@@ -169,49 +169,50 @@ class Choice(BaseModel):
         extra="forbid",
     )
     Type: Literal["Choice"]
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    Choices: List[Choice1]
-    Default: Optional[str] = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    Choices: list[Choice1]
+    Default: str | None = None
 
 
 class CatchItem(BaseModel):
-    ErrorEquals: List[Errors]
+    ErrorEquals: list[Errors]
     Next: str
-    ResultPath: Optional[AslRefPath] = None
+    ResultPath: AslRefPath | None = None
 
 
 class Model(BaseModel):
-    Comment: Optional[str] = None
+    Comment: str | None = None
     StartAt: str
-    States: Dict[constr(pattern=r"^.{1,80}$"), State]
+    States: dict[constr(pattern=r"^.{1,80}$"), State]
 
 
 class State(RootModel):
-    root: Union[Choice, Fail, Parallel, Pass, Succeed, Task, Wait, Map]
+    root: Choice | Fail | Parallel | Pass | Succeed | Task | Wait | Map
 
 
 class FieldPayloadTemplateObject(RootModel):
-    root: Union[
-        Dict[constr(pattern=r"^.+\.\$$"), str],
-        Dict[
+    root: (
+        dict[constr(pattern=r"^.+\.\$$"), str]
+        | dict[
             constr(pattern=r"^.+(([^.][^$])|([^.][$]))$"),
-            Union[
-                Optional[Union[float, bool, str]],
-                List[AslPayloadTemplate],
-                FieldPayloadTemplateObject,
-            ],
-        ],
-    ]
+            (
+                float
+                | bool
+                | str
+                | None
+                | list[AslPayloadTemplate]
+                | FieldPayloadTemplateObject
+            ),
+        ]
+    )
 
 
 class AslPayloadTemplate(RootModel):
-    root: Union[
-        FieldPayloadTemplateObject, List[AslPayloadTemplate], Union[str, bool, float]
-    ]
+    root: FieldPayloadTemplateObject | list[AslPayloadTemplate] | str | bool | float
 
 
 class Parallel(BaseModel):
@@ -219,28 +220,28 @@ class Parallel(BaseModel):
         extra="forbid",
     )
     Type: Literal["Parallel"]
-    Parameters: Optional[AslPayloadTemplate] = None
-    ResultSelector: Optional[AslPayloadTemplate] = None
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    ResultPath: Optional[AslRefPath] = None
-    Branches: List[StateMachine]
-    Retry: Optional[List[RetryItem]] = None
-    Catch: Optional[List[CatchItem]] = None
+    Parameters: AslPayloadTemplate | None = None
+    ResultSelector: AslPayloadTemplate | None = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    ResultPath: AslRefPath | None = None
+    Branches: list[StateMachine]
+    Retry: list[RetryItem] | None = None
+    Catch: list[CatchItem] | None = None
 
 
 class StateMachine(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    Comment: Optional[str] = None
+    Comment: str | None = None
     StartAt: str
-    States: Dict[constr(pattern=r"^.{1,80}$"), State]
-    Version: Optional[str] = None
-    TimeoutSeconds: Optional[conint(ge=0)] = None
+    States: dict[constr(pattern=r"^.{1,80}$"), State]
+    Version: str | None = None
+    TimeoutSeconds: conint(ge=0) | None = None
 
 
 class Pass(BaseModel):
@@ -248,14 +249,14 @@ class Pass(BaseModel):
         extra="forbid",
     )
     Type: Literal["Pass"]
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    ResultPath: Optional[AslRefPath] = None
-    Parameters: Optional[AslPayloadTemplate] = None
-    Result: Optional[Any] = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    ResultPath: AslRefPath | None = None
+    Parameters: AslPayloadTemplate | None = None
+    Result: Any | None = None
 
 
 class Task(BaseModel):
@@ -263,36 +264,36 @@ class Task(BaseModel):
         extra="forbid",
     )
     Type: Literal["Task"]
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    Resource: Union[str, constr(pattern=r"^\$\{[^\}]+\}$"), ResourceItem]
-    ResultPath: Optional[AslRefPath] = None
-    Retry: Optional[List[RetryItem]] = None
-    Catch: Optional[List[CatchItem1]] = None
-    TimeoutSeconds: Optional[confloat(ge=1.0)] = None
-    TimeoutSecondsPath: Optional[AslRefPath] = None
-    HeartbeatSeconds: Optional[confloat(ge=1.0)] = None
-    HeartbeatSecondsPath: Optional[AslRefPath] = None
-    ResultSelector: Optional[AslPayloadTemplate] = None
-    Parameters: Optional[AslPayloadTemplate] = None
-    Credentials: Optional[AslPayloadTemplate] = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    Resource: str | constr(pattern=r"^\$\{[^\}]+\}$") | ResourceItem
+    ResultPath: AslRefPath | None = None
+    Retry: list[RetryItem] | None = None
+    Catch: list[CatchItem1] | None = None
+    TimeoutSeconds: confloat(ge=1.0) | None = None
+    TimeoutSecondsPath: AslRefPath | None = None
+    HeartbeatSeconds: confloat(ge=1.0) | None = None
+    HeartbeatSecondsPath: AslRefPath | None = None
+    ResultSelector: AslPayloadTemplate | None = None
+    Parameters: AslPayloadTemplate | None = None
+    Credentials: AslPayloadTemplate | None = None
 
 
 class ItemReader(BaseModel):
     Resource: str
-    Parameters: Optional[AslPayloadTemplate] = None
-    ReaderConfig: Optional[ReaderConfig] = None
+    Parameters: AslPayloadTemplate | None = None
+    ReaderConfig: ReaderConfig | None = None
 
 
 class ItemBatcher(BaseModel):
-    MaxItemsPerBatch: Optional[confloat(ge=0.0)] = None
-    MaxItemsPerBatchPath: Optional[AslRefPath] = None
-    MaxInputBytesPerBatch: Optional[confloat(ge=0.0, le=262144.0)] = None
-    MaxInputBytesPerBatchPath: Optional[AslRefPath] = None
-    BatchInput: Optional[AslPayloadTemplate] = None
+    MaxItemsPerBatch: confloat(ge=0.0) | None = None
+    MaxItemsPerBatchPath: AslRefPath | None = None
+    MaxInputBytesPerBatch: confloat(ge=0.0, le=262144.0) | None = None
+    MaxInputBytesPerBatchPath: AslRefPath | None = None
+    BatchInput: AslPayloadTemplate | None = None
 
 
 class Map(BaseModel):
@@ -300,34 +301,34 @@ class Map(BaseModel):
         extra="forbid",
     )
     Type: Literal["Map"]
-    Next: Optional[str] = None
-    End: Optional[Literal[True]] = None
-    Comment: Optional[str] = None
-    OutputPath: Optional[AslPath] = None
-    InputPath: Optional[AslPath] = None
-    ResultPath: Optional[AslRefPath] = None
-    ItemsPath: Optional[AslRefPath] = None
-    Label: Optional[str] = None
-    MaxConcurrency: Optional[confloat(ge=0.0)] = None
-    MaxConcurrencyPath: Optional[AslRefPath] = None
-    ItemReader: Optional[ItemReader] = None
-    ItemProcessor: Optional[ItemProcessor] = None
-    Iterator: Optional[Model] = None
-    Parameters: Optional[AslPayloadTemplate] = None
-    ItemSelector: Optional[AslPayloadTemplate] = None
-    ItemBatcher: Optional[ItemBatcher] = None
-    ResultSelector: Optional[AslPayloadTemplate] = None
-    ResultWriter: Optional[Dict[str, Any]] = None
-    Retry: Optional[List[RetryItem]] = None
-    Catch: Optional[List[CatchItem2]] = None
-    ToleratedFailureCount: Optional[conint(ge=0)] = None
-    ToleratedFailureCountPath: Optional[AslRefPath] = None
-    ToleratedFailurePercentage: Optional[conint(ge=0, le=100)] = None
-    ToleratedFailurePercentagePath: Optional[AslRefPath] = None
+    Next: str | None = None
+    End: Literal[True] | None = None
+    Comment: str | None = None
+    OutputPath: AslPath | None = None
+    InputPath: AslPath | None = None
+    ResultPath: AslRefPath | None = None
+    ItemsPath: AslRefPath | None = None
+    Label: str | None = None
+    MaxConcurrency: confloat(ge=0.0) | None = None
+    MaxConcurrencyPath: AslRefPath | None = None
+    ItemReader: ItemReader | None = None
+    ItemProcessor: ItemProcessor | None = None
+    Iterator: Model | None = None
+    Parameters: AslPayloadTemplate | None = None
+    ItemSelector: AslPayloadTemplate | None = None
+    ItemBatcher: ItemBatcher | None = None
+    ResultSelector: AslPayloadTemplate | None = None
+    ResultWriter: dict[str, Any] | None = None
+    Retry: list[RetryItem] | None = None
+    Catch: list[CatchItem2] | None = None
+    ToleratedFailureCount: conint(ge=0) | None = None
+    ToleratedFailureCountPath: AslRefPath | None = None
+    ToleratedFailurePercentage: conint(ge=0, le=100) | None = None
+    ToleratedFailurePercentagePath: AslRefPath | None = None
 
 
 class ItemProcessor(Model):
-    ProcessorConfig: Optional[Union[ProcessorConfigItem, ProcessorConfigItem1]] = None
+    ProcessorConfig: ProcessorConfigItem | ProcessorConfigItem1 | None = None
 
 
 Operator.model_rebuild()
