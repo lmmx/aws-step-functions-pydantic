@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "aws-step-functions-pydantic"
-version = "0.0.4"
+version = "0.0.5"
 description = "Pydantic models for AWS step functions"
 readme = "README.md"
 authors = [
@@ -32,7 +32,9 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = [
-  "pre-commit>=4.1.0"
+  "pdm>=2.22.3",
+  "pdm-bump>=0.9.10",
+  "pre-commit>=4.1.0",
 ]
 
 [tool.coverage.paths]
